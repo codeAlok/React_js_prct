@@ -26,12 +26,12 @@ function App() {
      {/* <Apple /> */}
 
 
-    {/* write fn name inside without () to work on click otherwise run auto after page render */}
-    {/* or can use Arrow function ,()=>{} this don't run auto */}
-    <div>
-      {/* <button onClick={checkAlert}>click here</button> */}
-      <button onClick={()=> checkAlert()}>click here</button>
-    </div>
+      {/* write fn name inside without () to work on click otherwise run auto after page render */}
+      {/* or can use Arrow function ,()=>{} this don't run auto */}
+      <div>
+        {/* <button onClick={checkAlert}>click here</button> */}
+        <button onClick={()=> checkAlert()}>click here</button>
+      </div>
 
     </div>
   );
