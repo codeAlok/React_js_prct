@@ -11,6 +11,7 @@ class ClassComp extends Component {
 
     apple() {
         this.setState({data: this.state.data + 1});
+        // to change data or update data
     }
 
     render() {
