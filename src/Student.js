@@ -2,6 +2,7 @@
 function Student(props) {
 
     console.log(props);
+    
     return(
         <div style={{backgroundColor: "skyblue", margin: 10, textAlign: "center"}}>
 

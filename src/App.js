@@ -77,6 +77,7 @@ function App() {
   //   </div>
   // )
 
+  
   //*** Props in fn_comp ***
   // Props is like parameter passing
   // using state
