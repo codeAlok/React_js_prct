@@ -78,26 +78,37 @@ function App() {
   // )
 
   
-  //*** Props in fn_comp ***
-  // Props is like parameter passing
-  // using state
-  const [name, setName] = useState("bheem");
+  // //*** Props in fn_comp ***
+  // // Props is like parameter passing
+  // // using state
+  // const [name, setName] = useState("bheem");
 
-  return (
-    <div>
-      <h1>Props in React :</h1>
+  // return (
+  //   <div>
+  //     <h1>Props in React :</h1>
       
-      {/* general prop passing */}
-      {/* <Student name={"Alok"} email={"aka@test.com"} other={{address: 'Banglore', mobile: "000"}}/>
+  //     {/* general prop passing */}
+  //     {/* <Student name={"Alok"} email={"aka@test.com"} other={{address: 'Banglore', mobile: "000"}}/>
 
-      <Student name={"Rishav"} email={"risu@test.com"} other={{address: 'gurgaon', mobile: "112"}}/>
+  //     <Student name={"Rishav"} email={"risu@test.com"} other={{address: 'gurgaon', mobile: "112"}}/>
 
-      <Student name={"Aditya"} email={"adi@test.com"} other={{address: 'delhi', mobile: "223"}}/> */}
+  //     <Student name={"Aditya"} email={"adi@test.com"} other={{address: 'delhi', mobile: "223"}}/> */}
 
-      {/* changing name using state and prop */}
-      <Student name={name} />
-      <button onClick={()=> {setName("Prem")}}>Update Name</button>
+  //     {/* changing name using state and prop */}
+  //     <Student name={name} />
+  //     <button onClick={()=> {setName("Prem")}}>Update Name</button>
 
+  //   </div>
+  // )
+
+
+  //*** Props in ClassComp */
+  return(
+    <div>
+      <h1>Props in class</h1>
+      <ClassComp name="abhi" email="abhi@check.com" />
+
+      <button>Update</button>
     </div>
   )
 }
