@@ -114,30 +114,63 @@ import Student from './Student'  // for props
 // }
 
 
-// *** Input box ***
-function App() {
-  const [data, setData] = useState(null);  //state
-  const [print, setPrint] = useState(false);
+// // *** Input box ***
+// function App() {
+//   const [data, setData] = useState(null);  //state
+//   const [print, setPrint] = useState(false);
 
-  function getData(val) {
-    console.warn(val.target.value);
-    setData(val.target.value);
-    setPrint(false); //hide when write in input
+//   function getData(val) {
+//     console.warn(val.target.value);
+//     setData(val.target.value);
+//     setPrint(false); //hide when write in input
+//   }
+
+//   return(
+//     <div className="App">
+//       {/* <h1>{data}</h1> */}
+//       {
+//         print? <h1>{data}</h1> : null
+//       }
+//       <input type="text" onChange={getData}/>
+//       <button onClick={()=> setPrint(true)}>Print Data</button>
+
+//       {/* to toggle between hide/show  use (!argument) */}
+//       <button onClick={()=> setPrint(!print)}>Toggle</button>
+//     </div>
+//   )
+// }
+
+
+// *** Handle Form ***
+function App() {
+  const [name, setName] = useState('');
+  const [tnc, setTnc] = useState(false);
+  const [interest, setInterest] = useState('');
+
+  // To stop submitting form 
+  function getFormData(e) {
+    console.warn(name, tnc, interest);
+    e.preventDefault();
   }
 
-  return(
-    <div className="App">
-      {/* <h1>{data}</h1> */}
-      {
-        print? <h1>{data}</h1> : null
-      }
-      <input type="text" onChange={getData}/>
-      <button onClick={()=> setPrint(true)}>Print Data</button>
+  return (
+    <div className='App'>
+      <h1>Handle form in React</h1>
 
-      {/* to toggle between hide/show  use (!argument) */}
-      <button onClick={()=> setPrint(!print)}>Toggle</button>
+      <form onSubmit={getFormData}>
+        <input type="data" placeholder='Enter name' onChange={(e)=> setName(e.target.value)}/> <br /> <br />
+        <select onChange={(e)=> setInterest(e.target.value)}>
+          <option>Bollywood</option>
+          <option>Hollywood</option>
+          <option>Tollywood</option>
+        </select>
+        <br /><br />
+
+        <input type='checkbox' onChange={(e)=> setTnc(e.target.checked)} /><span>Accept terms & Conditions</span>
+        <br /><br />
+        <button type='submit'>Submit</button>
+      </form>
     </div>
   )
 }
-
 export default App;
