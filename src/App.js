@@ -5,6 +5,7 @@ import User from './User';
 import ClassComp from './ClassComp'; //for state & prop in class_comp
 
 import Student from './Student'  // for props
+import Login from './Login'  //for form validation
 
 // function App() {
 
@@ -141,36 +142,47 @@ import Student from './Student'  // for props
 // }
 
 
-// *** Handle Form ***
+// // *** Handle Form ***
+// function App() {
+//   const [name, setName] = useState('');
+//   const [tnc, setTnc] = useState(false);
+//   const [interest, setInterest] = useState('');
+
+//   // To stop submitting form 
+//   function getFormData(e) {
+//     console.warn(name, tnc, interest);
+//     e.preventDefault();
+//   }
+
+//   return (
+//     <div className='App'>
+//       <h1>Handle form in React</h1>
+
+//       <form onSubmit={getFormData}>
+//         <input type="data" placeholder='Enter name' onChange={(e)=> setName(e.target.value)}/> <br /> <br />
+//         <select onChange={(e)=> setInterest(e.target.value)}>
+//           <option>Bollywood</option>
+//           <option>Hollywood</option>
+//           <option>Tollywood</option>
+//         </select>
+//         <br /><br />
+
+//         <input type='checkbox' onChange={(e)=> setTnc(e.target.checked)} /><span>Accept terms & Conditions</span>
+//         <br /><br />
+//         <button type='submit'>Submit</button>
+//       </form>
+//     </div>
+//   )
+// }
+
+
+// *** For Basic form validation ***
 function App() {
-  const [name, setName] = useState('');
-  const [tnc, setTnc] = useState(false);
-  const [interest, setInterest] = useState('');
-
-  // To stop submitting form 
-  function getFormData(e) {
-    console.warn(name, tnc, interest);
-    e.preventDefault();
-  }
-
-  return (
-    <div className='App'>
-      <h1>Handle form in React</h1>
-
-      <form onSubmit={getFormData}>
-        <input type="data" placeholder='Enter name' onChange={(e)=> setName(e.target.value)}/> <br /> <br />
-        <select onChange={(e)=> setInterest(e.target.value)}>
-          <option>Bollywood</option>
-          <option>Hollywood</option>
-          <option>Tollywood</option>
-        </select>
-        <br /><br />
-
-        <input type='checkbox' onChange={(e)=> setTnc(e.target.checked)} /><span>Accept terms & Conditions</span>
-        <br /><br />
-        <button type='submit'>Submit</button>
-      </form>
-    </div>
-  )
+    return(
+        <div className='App'>
+            <Login />
+        </div>
+    )
 }
+
 export default App;
