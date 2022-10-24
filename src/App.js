@@ -46,69 +46,96 @@ import Student from './Student'  // for props
 // state is to store variable in react
 // through normal variable we cannot update the data. 
 
-function App() {
-  // let data = "alok";
-  // function updateData() {
-  //   data = "aditya";
-  //   alert(data);
-  // }
+// function App() {
+//   // let data = "alok";
+//   // function updateData() {
+//   //   data = "aditya";
+//   //   alert(data);
+//   // }
 
-  // // *** Using state ***
-  // const [data, setData] =  useState(0); //default value
+//   // // *** Using state ***
+//   // const [data, setData] =  useState(0); //default value
 
-  // function updateData() {
-  //   setData(data+1); // to update according to previous data
-  // }
+//   // function updateData() {
+//   //   setData(data+1); // to update according to previous data
+//   // }
 
-  // console.warn("___Rendered__");
+//   // console.warn("___Rendered__");
 
-  // return (
-  //   <div>
-  //     {/* updated data will not show here if not use state property*/}
-  //     <h1>{data}</h1> 
-  //     <button onClick={updateData}>Update Now</button>
-  //   </div>
-  // );
+//   // return (
+//   //   <div>
+//   //     {/* updated data will not show here if not use state property*/}
+//   //     <h1>{data}</h1> 
+//   //     <button onClick={updateData}>Update Now</button>
+//   //   </div>
+//   // );
 
-  // //*** state in class_component***
-  // return(
-  //   <div>
-  //     <ClassComp />  
-  //   </div>
-  // )
+//   // //*** state in class_component***
+//   // return(
+//   //   <div>
+//   //     <ClassComp />  
+//   //   </div>
+//   // )
 
   
-  // //*** Props in fn_comp ***
-  // // Props is like parameter passing
-  // // using state
-  // const [name, setName] = useState("bheem");
+//   // //*** Props in fn_comp ***
+//   // // Props is like parameter passing
+//   // // using state
+//   // const [name, setName] = useState("bheem");
 
-  // return (
-  //   <div>
-  //     <h1>Props in React :</h1>
+//   // return (
+//   //   <div>
+//   //     <h1>Props in React :</h1>
       
-  //     {/* general prop passing */}
-  //     {/* <Student name={"Alok"} email={"aka@test.com"} other={{address: 'Banglore', mobile: "000"}}/>
+//   //     {/* general prop passing */}
+//   //     {/* <Student name={"Alok"} email={"aka@test.com"} other={{address: 'Banglore', mobile: "000"}}/>
 
-  //     <Student name={"Rishav"} email={"risu@test.com"} other={{address: 'gurgaon', mobile: "112"}}/>
+//   //     <Student name={"Rishav"} email={"risu@test.com"} other={{address: 'gurgaon', mobile: "112"}}/>
 
-  //     <Student name={"Aditya"} email={"adi@test.com"} other={{address: 'delhi', mobile: "223"}}/> */}
+//   //     <Student name={"Aditya"} email={"adi@test.com"} other={{address: 'delhi', mobile: "223"}}/> */}
 
-  //     {/* changing name using state and prop */}
-  //     <Student name={name} />
-  //     <button onClick={()=> {setName("Prem")}}>Update Name</button>
+//   //     {/* changing name using state and prop */}
+//   //     <Student name={name} />
+//   //     <button onClick={()=> {setName("Prem")}}>Update Name</button>
 
-  //   </div>
-  // )
+//   //   </div>
+//   // )
 
 
-  //*** Props in ClassComp */
+//   //*** Props in ClassComp */
+//   return(
+//     <div>
+//       <h1>Props in class</h1>
+//       <ClassComp name="abhi" email="abhi@check.com" />
+
+//       <button>Update</button>
+//     </div>
+//   )
+// }
+
+
+// *** Input box ***
+function App() {
+  const [data, setData] = useState(null);  //state
+  const [print, setPrint] = useState(false);
+
+  function getData(val) {
+    console.warn(val.target.value);
+    setData(val.target.value);
+    setPrint(false); //hide when write in input
+  }
+
   return(
-    <div>
-      <h1>Props in class</h1>
-      <ClassComp name="abhi" email="abhi@check.com" />
+    <div className="App">
+      {/* <h1>{data}</h1> */}
+      {
+        print? <h1>{data}</h1> : null
+      }
+      <input type="text" onChange={getData}/>
+      <button onClick={()=> setPrint(true)}>Print Data</button>
 
-      <button>Update</button>
+      {/* to toggle between hide/show  use (!argument) */}
+      <button onClick={()=> setPrint(!print)}>Toggle</button>
     </div>
   )
 }
