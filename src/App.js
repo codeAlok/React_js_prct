@@ -1,5 +1,5 @@
 // import logo from './logo.svg';
-import {useState} from 'react';
+import React,{useState} from 'react';
 import './App.css';
 import User from './User';
 import ClassComp from './ClassComp'; //for state & prop in class_comp
@@ -176,13 +176,39 @@ import Login from './Login'  //for form validation
 // }
 
 
-// *** For Basic form validation ***
-function App() {
-    return(
-        <div className='App'>
-            <Login />
-        </div>
-    )
+// // *** For Basic form validation ***
+// function App() {
+//     return(
+//         <div className='App'>
+//             <Login />
+//         </div>
+//     )
+// }
+
+
+//*** Constructor lifecycle method ***
+class App extends React.Component{
+    // constructor called before render() always as OOPs
+    // so (state) is defined here 
+    // Never call api in constructor
+    constructor() {
+        super(); // used to call parent class(React.Component)
+        this.state = {
+            name: "alok"
+        }
+    }
+
+    render() {
+        console.warn("render");
+        return(
+            <div>
+                <h1>Hello world</h1>
+                <h1>Hello {this.state.name}</h1>
+            </div>
+           
+        )
+    }
 }
+
 
 export default App;
