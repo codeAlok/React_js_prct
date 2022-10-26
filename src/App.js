@@ -247,22 +247,32 @@ class App extends React.Component {
     constructor() {
         super();
         this.state={
-            name: "anya"
+            count: 0
         }
         console.warn("constructor");
     }
 
     // run only after state/props update
-    componentDidUpdate() {
-        console.warn("componentDidUpdate");
+    componentDidUpdate(preProps,PreState,snapshot) {
+
+        // show prevState and prevProps before update
+        console.warn("componentDidUpdate",PreState);
+
+        //update state under a condition (otherwise infinite loop occurs)
+        // this.setState({count: this.state.count+1});  //infinite loop
+
+        if(this.state.count < 10) {
+            this.setState({count: this.state.count+1});
+        }
     }
 
     render() {
         console.warn("render");
         return(
             <div className='App'>
-                <h1>Component Did Update</h1>
-                <button onClick={()=>{this.setState({name: "abhi"})}}>update name</button>
+                <h1>Component Did Update {this.state.count}</h1>
+
+                <button onClick={()=>{this.setState({count: this.state.count+1})}}>update count</button>
             </div>
         )
     }
