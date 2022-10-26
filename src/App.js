@@ -186,29 +186,58 @@ import Login from './Login'  //for form validation
 // }
 
 
-//*** Constructor lifecycle method ***
+// // *** Constructor lifecycle method ***
+// class App extends React.Component{
+//     // constructor called before render() always as OOPs
+//     // so (state) is defined here 
+//     // Never call api in constructor
+//     constructor() {
+//         super(); // used to call parent class(React.Component)
+//         this.state = {
+//             name: "alok"
+//         }
+//     }
+
+//     render() {
+//         console.warn("render");
+//         return(
+//             <div>
+//                 <h1>Hello world</h1>
+//                 <h1>Hello {this.state.name}</h1>
+//             </div>
+           
+//         )
+//     }
+// }
+
+
+// *** componentDidMount ***
+// can we update state in componentDidMount() ?
+// Check in which order all below function run
 class App extends React.Component{
-    // constructor called before render() always as OOPs
-    // so (state) is defined here 
-    // Never call api in constructor
     constructor() {
-        super(); // used to call parent class(React.Component)
-        this.state = {
+        super();
+        this.state={
             name: "alok"
         }
+        console.warn("constructor")
+    }
+
+    //componentDidMount is used to take care of api calls and work done after full page render and run only once after render (not after any update even) 
+    componentDidMount() {
+        console.warn("componentDidMount");
     }
 
     render() {
         console.warn("render");
+
         return(
-            <div>
-                <h1>Hello world</h1>
-                <h1>Hello {this.state.name}</h1>
+            <div className='App'>
+                <h1>Component Did mount {this.state.name}</h1>
+                <button onClick={()=> {this.setState({name: "aadi"})}}>Update Name</button>
             </div>
-           
         )
     }
 }
-
 
 export default App;
