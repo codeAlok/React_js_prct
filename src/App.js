@@ -6,6 +6,7 @@ import ClassComp from './ClassComp'; //for state & prop in class_comp
 
 import Student from './Student'  // for props
 import Login from './Login'  //for form validation
+import Student1 from './Student1';  // for componentWillUnmount
 
 // function App() {
 
@@ -241,38 +242,61 @@ import Login from './Login'  //for form validation
 // }
 
 
-// *** componentDidUpdate ***
-// check in which order and when which function run
+// // *** componentDidUpdate ***
+// // check in which order and when which function run
+// class App extends React.Component {
+//     constructor() {
+//         super();
+//         this.state={
+//             count: 0
+//         }
+//         console.warn("constructor");
+//     }
+
+//     // run only after state/props update
+//     componentDidUpdate(preProps,PreState,snapshot) {
+
+//         // show prevState and prevProps before update
+//         console.warn("componentDidUpdate",PreState);
+
+//         //update state under a condition (otherwise infinite loop occurs)
+//         // this.setState({count: this.state.count+1});  //infinite loop
+
+//         if(this.state.count < 10) {
+//             this.setState({count: this.state.count+1});
+//         }
+//     }
+
+//     render() {
+//         console.warn("render");
+//         return(
+//             <div className='App'>
+//                 <h1>Component Did Update {this.state.count}</h1>
+
+//                 <button onClick={()=>{this.setState({count: this.state.count+1})}}>update count</button>
+//             </div>
+//         )
+//     }
+// }
+
+
+// *** componentWillUnmount ***
 class App extends React.Component {
     constructor() {
         super();
         this.state={
-            count: 0
-        }
-        console.warn("constructor");
-    }
-
-    // run only after state/props update
-    componentDidUpdate(preProps,PreState,snapshot) {
-
-        // show prevState and prevProps before update
-        console.warn("componentDidUpdate",PreState);
-
-        //update state under a condition (otherwise infinite loop occurs)
-        // this.setState({count: this.state.count+1});  //infinite loop
-
-        if(this.state.count < 10) {
-            this.setState({count: this.state.count+1});
+            show: true
         }
     }
 
     render() {
-        console.warn("render");
         return(
             <div className='App'>
-                <h1>Component Did Update {this.state.count}</h1>
-
-                <button onClick={()=>{this.setState({count: this.state.count+1})}}>update count</button>
+            {
+                this.state.show ? <Student1 /> : <h1>Child component Removed</h1>
+            }
+                
+                <button onClick={()=> this.setState({show: !this.state.show})}>Toggle child Component</button>
             </div>
         )
     }
