@@ -8,6 +8,9 @@ import Student from './Student'  // for props
 import Login from './Login'  //for form validation
 import Student1 from './Student1';  // for componentWillUnmount
 
+import './style.css'; // to check styles in react
+import style from './custom.module.css'; // to work with module styles in react
+
 // function App() {
 
 //   // component inside component use
@@ -303,29 +306,46 @@ import Student1 from './Student1';  // for componentWillUnmount
 // }
 
 
-// *** useEffect HOOks ***
+// // *** useEffect HOOks ***
+// function App() {
+//     const [data, setData] = useState(10);
+//     const [count, setCount] = useState(100);
+
+//     // run on render first time as componentDidMount and on update(states/props) as respective lifecycle method as well & according to codition also
+
+//     //called when data state update
+//     useEffect(()=> {
+//         console.warn('called with Data state');
+//     }, [data])
+
+//     //called when count state update
+//     useEffect(()=> {
+//         alert('count is: ' + count);
+//     }, [count])
+
+//     return(
+//         <div className='App'>
+//             <h1>useEffect Count: {count}</h1>
+//             <h1>useEffect Data: {data}</h1>
+//             <button onClick={()=> setCount(count+1)}>Update count</button>
+//             <button onClick={()=> setData(data+1)}>Update Data</button>
+//         </div>
+//     )
+// }
+
+
+// *** Using styles in React js ***
 function App() {
-    const [data, setData] = useState(10);
-    const [count, setCount] = useState(100);
-
-    // run on render first time as componentDidMount and on update(states/props) as respective lifecycle method as well & according to codition also
-
-    //called when data state update
-    useEffect(()=> {
-        console.warn('called with Data state');
-    }, [data])
-
-    //called when count state update
-    useEffect(()=> {
-        alert('count is: ' + count);
-    }, [count])
-
     return(
         <div className='App'>
-            <h1>useEffect Count: {count}</h1>
-            <h1>useEffect Data: {data}</h1>
-            <button onClick={()=> setCount(count+1)}>Update count</button>
-            <button onClick={()=> setData(data+1)}>Update Data</button>
+            {/* external css */}
+            <h1 className='primary'>Style type1 in React js</h1>
+
+            {/* internal css */}
+            <h1 style={{color: 'red', backgroundColor: 'yellow'}}>Style type2 in React js</h1>
+
+            {/* modular css */}
+            <h1 className={style.success}>Style type3 in React js</h1>
         </div>
     )
 }
