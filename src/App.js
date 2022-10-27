@@ -1,5 +1,5 @@
 // import logo from './logo.svg';
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';  //Hooks in react
 import './App.css';
 import User from './User';
 import ClassComp from './ClassComp'; //for state & prop in class_comp
@@ -280,26 +280,54 @@ import Student1 from './Student1';  // for componentWillUnmount
 // }
 
 
-// *** componentWillUnmount ***
-class App extends React.Component {
-    constructor() {
-        super();
-        this.state={
-            show: true
-        }
-    }
+// // *** componentWillUnmount ***
+// class App extends React.Component {
+//     constructor() {
+//         super();
+//         this.state={
+//             show: true
+//         }
+//     }
 
-    render() {
-        return(
-            <div className='App'>
-            {
-                this.state.show ? <Student1 /> : <h1>Child component Removed</h1>
-            }
+//     render() {
+//         return(
+//             <div className='App'>
+//             {
+//                 this.state.show ? <Student1 /> : <h1>Child component Removed</h1>
+//             }
                 
-                <button onClick={()=> this.setState({show: !this.state.show})}>Toggle child Component</button>
-            </div>
-        )
-    }
+//                 <button onClick={()=> this.setState({show: !this.state.show})}>Toggle child Component</button>
+//             </div>
+//         )
+//     }
+// }
+
+
+// *** useEffect HOOks ***
+function App() {
+    const [data, setData] = useState(10);
+    const [count, setCount] = useState(100);
+
+    // run on render first time as componentDidMount and on update(states/props) as respective lifecycle method as well & according to codition also
+
+    //called when data state update
+    useEffect(()=> {
+        console.warn('called with Data state');
+    }, [data])
+
+    //called when count state update
+    useEffect(()=> {
+        alert('count is: ' + count);
+    }, [count])
+
+    return(
+        <div className='App'>
+            <h1>useEffect Count: {count}</h1>
+            <h1>useEffect Data: {data}</h1>
+            <button onClick={()=> setCount(count+1)}>Update count</button>
+            <button onClick={()=> setData(data+1)}>Update Data</button>
+        </div>
+    )
 }
 
 export default App;
