@@ -11,7 +11,7 @@ import Student1 from './Student1';  // for componentWillUnmount
 import './style.css'; // to check styles in react
 import style from './custom.module.css'; // to work with module styles in react
 
-import { Button,Alert } from 'react-bootstrap'; //Bootstrap 
+import { Button, Alert } from 'react-bootstrap'; //Bootstrap 
 
 // function App() {
 
@@ -353,30 +353,75 @@ import { Button,Alert } from 'react-bootstrap'; //Bootstrap
 // }
 
 
-//*** Bootstrap in React ***
+// //*** Bootstrap in React ***
+// function App() {
+//     return (
+//         <div className='App'>
+//             <h1>Bootstrap in React</h1>
+//             <Button variant="primary">Primary</Button>{' '}
+//             <Button variant="secondary">Secondary</Button>{' '}
+//             <Button variant="success">Success</Button>{' '}
+//             <Button variant="warning">Warning</Button>{' '}
+//             <Button variant="danger">Danger</Button>{' '}
+//             <Button variant="info">Info</Button>{' '}
+//             <Button variant="light">Light</Button>{' '}
+//             <Button variant="dark">Dark</Button>
+//             <Button variant="link">Link</Button>
+
+//             {/* using Alert property of bootstrap */}
+//             { 
+//                 <Alert variant="warning">
+//                     This is a warning alert—check it out!
+//                 </Alert>
+//             }
+//         </div>
+//     )
+// }
+
+
+// *** Handle Array list and loopings ***
 function App() {
+    // const students = ['adi', 'rishi', 'smith', 'ritik', 'amaa'];
+
+    // map looking & for loop support outside return but ==> (for,while,do-while loop ) will not support inside return
+    // students.map((item)=>{
+    //     console.warn("My name in map is: ",item);
+    // });
+
+    // for(let i=0; i < students.length; i++) {
+    //     console.warn("My name in for loop is: ",students[i]);
+    // }
+
+    const candidates = [
+        { name: 'adi', email: 'adi@check.com', id: 121 },
+        { name: 'rishi', email: 'rishi@check.com', id: 232 },
+        { name: 'smith', email: 'smith@check.com', id: 343 },
+        { name: 'amaa', email: 'amaa@check.com', id: 454 },
+    ];
+
     return (
         <div className='App'>
-            <h1>Bootstrap in React</h1>
-            <Button variant="primary">Primary</Button>{' '}
-            <Button variant="secondary">Secondary</Button>{' '}
-            <Button variant="success">Success</Button>{' '}
-            <Button variant="warning">Warning</Button>{' '}
-            <Button variant="danger">Danger</Button>{' '}
-            <Button variant="info">Info</Button>{' '}
-            <Button variant="light">Light</Button>{' '}
-            <Button variant="dark">Dark</Button>
-            <Button variant="link">Link</Button>
-
-            {/* using Alert property of bootstrap */}
-            { 
-                <Alert variant="warning">
-                    This is a warning alert—check it out!
-                </Alert>
-            }
+            <h1>Handling Array list and loopings</h1>
+            <table border='2'>
+                <tr>
+                    <td>Name</td>
+                    <td>Email</td>
+                    <td>Id</td>
+                </tr>
+                {
+                    candidates.map((item) =>
+                        <tr>
+                            <td>{item.name}</td>
+                            <td>{item.email}</td>
+                            <td>{item.id}</td>
+                        </tr>
+                    )
+                }
+            </table>
         </div>
     )
 }
+
 
 
 export default App;
