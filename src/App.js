@@ -12,6 +12,7 @@ import './style.css'; // to check styles in react
 import style from './custom.module.css'; // to work with module styles in react
 
 import { Button, Alert } from 'react-bootstrap'; //Bootstrap 
+import { Table } from 'react-bootstrap'; //Bootstrap table
 
 // function App() {
 
@@ -393,31 +394,79 @@ function App() {
     // }
 
     const candidates = [
-        { name: 'adi', email: 'adi@check.com', id: 121 },
-        { name: 'rishi', email: 'rishi@check.com', id: 232 },
-        { name: 'smith', email: 'smith@check.com', id: 343 },
-        { name: 'amaa', email: 'amaa@check.com', id: 454 },
+        {
+            name: 'adi', email: 'adi@check.com', address: [
+                { Hn: "10", city: 'Noida', country: 'India' },
+                { Hn: "20", city: 'delhi', country: 'India' },
+                { Hn: "30", city: 'mumbai', country: 'India' },
+                { Hn: "40", city: 'Noida', country: 'India' }
+            ]
+        },
+        {
+            name: 'rishi', email: 'rishi@check.com', address: [
+                { Hn: "10", city: 'Noida', country: 'India' },
+                { Hn: "20", city: 'delhi', country: 'India' },
+                { Hn: "30", city: 'mumbai', country: 'India' },
+                { Hn: "40", city: 'Noida', country: 'India' }
+            ]
+        },
+        {
+            name: 'smith', email: 'smith@check.com', address: [
+                { Hn: "10", city: 'Noida', country: 'India' },
+                { Hn: "20", city: 'delhi', country: 'India' },
+                { Hn: "30", city: 'mumbai', country: 'India' },
+                { Hn: "40", city: 'Noida', country: 'India' }
+            ]
+        },
+        {
+            name: 'amaa', email: 'amaa@check.com', address: [
+                { Hn: "10", city: 'Noida', country: 'India' },
+                { Hn: "20", city: 'delhi', country: 'India' },
+                { Hn: "30", city: 'mumbai', country: 'India' },
+                { Hn: "40", city: 'Noida', country: 'India' }
+            ]
+        }
     ];
 
     return (
         <div className='App'>
-            <h1>Handling Array list and loopings</h1>
-            <table border='2'>
-                <tr>
-                    <td>Name</td>
-                    <td>Email</td>
-                    <td>Id</td>
-                </tr>
-                {
-                    candidates.map((item) =>
-                        <tr>
-                            <td>{item.name}</td>
-                            <td>{item.email}</td>
-                            <td>{item.id}</td>
-                        </tr>
-                    )
-                }
-            </table>
+            <h1>List with Nested Array</h1>
+            <Table variant='dark' striped>
+                <thead>
+                    <tr>
+                        <td>S.No.</td>
+                        <td>Name</td>
+                        <td>Email</td>
+                        <td>Address</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        // key is used to just remove an error & i to take as key & index also
+                        candidates.map((item,i) =>
+                            <tr key={i}>
+                                <td>{i+1}</td>
+                                <td>{item.name}</td>
+                                <td>{item.email}</td>
+                                <td>
+                                    <Table variant='dark' striped>
+                                        <tbody>{
+                                            item.address.map((data,x) =>
+                                                <tr key={x}>
+                                                    <td>{data.Hn}</td>
+                                                    <td>{data.city}</td>
+                                                    <td>{data.country}</td>
+                                                </tr>
+                                            )
+                                        }
+                                        </tbody>
+                                    </Table>
+                                </td>
+                            </tr>
+                        )
+                    }
+                </tbody>
+            </Table>
         </div>
     )
 }
