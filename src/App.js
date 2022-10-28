@@ -1,5 +1,5 @@
 // import logo from './logo.svg';
-import React,{useState, useEffect} from 'react';  //Hooks in react
+import React, { useState, useEffect } from 'react';  //Hooks in react
 import './App.css';
 import User from './User';
 import ClassComp from './ClassComp'; //for state & prop in class_comp
@@ -10,6 +10,8 @@ import Student1 from './Student1';  // for componentWillUnmount
 
 import './style.css'; // to check styles in react
 import style from './custom.module.css'; // to work with module styles in react
+
+import { Button,Alert } from 'react-bootstrap'; //Bootstrap 
 
 // function App() {
 
@@ -29,7 +31,7 @@ import style from './custom.module.css'; // to work with module styles in react
 //     <div className="App">
 //      <h1>Hello world</h1>
 //      <User />
-     
+
 //      {/* component used method 1 & 2 */}
 //      {/* {Apple()}     */}
 //      {/* <Apple /> */}
@@ -82,7 +84,7 @@ import style from './custom.module.css'; // to work with module styles in react
 //   //   </div>
 //   // )
 
-  
+
 //   // //*** Props in fn_comp ***
 //   // // Props is like parameter passing
 //   // // using state
@@ -91,7 +93,7 @@ import style from './custom.module.css'; // to work with module styles in react
 //   // return (
 //   //   <div>
 //   //     <h1>Props in React :</h1>
-      
+
 //   //     {/* general prop passing */}
 //   //     {/* <Student name={"Alok"} email={"aka@test.com"} other={{address: 'Banglore', mobile: "000"}}/>
 
@@ -209,7 +211,7 @@ import style from './custom.module.css'; // to work with module styles in react
 //                 <h1>Hello world</h1>
 //                 <h1>Hello {this.state.name}</h1>
 //             </div>
-           
+
 //         )
 //     }
 // }
@@ -298,7 +300,7 @@ import style from './custom.module.css'; // to work with module styles in react
 //             {
 //                 this.state.show ? <Student1 /> : <h1>Child component Removed</h1>
 //             }
-                
+
 //                 <button onClick={()=> this.setState({show: !this.state.show})}>Toggle child Component</button>
 //             </div>
 //         )
@@ -334,20 +336,47 @@ import style from './custom.module.css'; // to work with module styles in react
 // }
 
 
-// *** Using styles in React js ***
+// // *** Using styles in React js ***
+// function App() {
+//     return(
+//         <div className='App'>
+//             {/* external css */}
+//             <h1 className='primary'>Style type1 in React js</h1>
+
+//             {/* internal css */}
+//             <h1 style={{color: 'red', backgroundColor: 'yellow'}}>Style type2 in React js</h1>
+
+//             {/* modular css */}
+//             <h1 className={style.success}>Style type3 in React js</h1>
+//         </div>
+//     )
+// }
+
+
+//*** Bootstrap in React ***
 function App() {
-    return(
+    return (
         <div className='App'>
-            {/* external css */}
-            <h1 className='primary'>Style type1 in React js</h1>
+            <h1>Bootstrap in React</h1>
+            <Button variant="primary">Primary</Button>{' '}
+            <Button variant="secondary">Secondary</Button>{' '}
+            <Button variant="success">Success</Button>{' '}
+            <Button variant="warning">Warning</Button>{' '}
+            <Button variant="danger">Danger</Button>{' '}
+            <Button variant="info">Info</Button>{' '}
+            <Button variant="light">Light</Button>{' '}
+            <Button variant="dark">Dark</Button>
+            <Button variant="link">Link</Button>
 
-            {/* internal css */}
-            <h1 style={{color: 'red', backgroundColor: 'yellow'}}>Style type2 in React js</h1>
-
-            {/* modular css */}
-            <h1 className={style.success}>Style type3 in React js</h1>
+            {/* using Alert property of bootstrap */}
+            { 
+                <Alert variant="warning">
+                    This is a warning alert—check it out!
+                </Alert>
+            }
         </div>
     )
 }
+
 
 export default App;
