@@ -15,6 +15,7 @@ import { Button, Alert } from 'react-bootstrap'; //Bootstrap
 import { Table } from 'react-bootstrap'; //Bootstrap table
 
 import ReuseComp from './ReuseComp'; // to reuse component through loops
+import LiftingState from './LiftingState'; //to apply lifting state up 
 
 // function App() {
 
@@ -474,34 +475,53 @@ import ReuseComp from './ReuseComp'; // to reuse component through loops
 // }
 
 
-//*** Reuse Component in loop ***
+// //*** Reuse Component in loop ***
+// function App() {
+//     const users = [
+//         {
+//             name: 'adi', email: 'adi@check.com', contact: '111'
+//         },
+//         {
+//             name: 'rishi', email: 'rishi@check.com', contact: '222'
+//         },
+//         {
+//             name: 'smith', email: 'smith@check.com', contact: '333'
+//         },
+//         {
+//             name: 'sam', email: 'sam@check.com', contact: '444'
+//         }
+//     ];
+
+//     return(
+//         <div className='App'>
+//             <h1>Reuse component with list</h1>
+//             {
+//                 users.map((item, i)=>
+//                 <h1>
+//                     <ReuseComp data={item}/>
+//                 </h1>
+//                 )
+//             }
+//         </div>
+//     )
+// }
+
+
+// *** Lifting state up ***
+// send child data to parent component( lifting state up)
 function App() {
-    const users = [
-        {
-            name: 'adi', email: 'adi@check.com', contact: '111'
-        },
-        {
-            name: 'rishi', email: 'rishi@check.com', contact: '222'
-        },
-        {
-            name: 'smith', email: 'smith@check.com', contact: '333'
-        },
-        {
-            name: 'sam', email: 'sam@check.com', contact: '444'
-        }
-    ];
+    let data = "Alok kumar";
+    
+    function parentAlert(item) {
+        //data(item) receiving from child component
+        alert(item);
+    }
 
     return(
         <div className='App'>
-            <h1>Reuse component with list</h1>
-            
-            {
-                users.map((item, i)=>
-                <h1>
-                    <ReuseComp data={item}/>
-                </h1>
-                )
-            }
+            <h1>Lifting state up</h1>
+            {/* <LiftingState name={data}/> */}
+            <LiftingState alert={parentAlert}/>
         </div>
     )
 }
