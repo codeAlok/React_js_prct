@@ -14,6 +14,8 @@ import style from './custom.module.css'; // to work with module styles in react
 import { Button, Alert } from 'react-bootstrap'; //Bootstrap 
 import { Table } from 'react-bootstrap'; //Bootstrap table
 
+import ReuseComp from './ReuseComp'; // to reuse component through loops
+
 // function App() {
 
 //   // component inside component use
@@ -380,97 +382,128 @@ import { Table } from 'react-bootstrap'; //Bootstrap table
 // }
 
 
-// *** Handle Array list and loopings ***
+// // *** Handle Array list and loopings ***
+// function App() {
+//     // const students = ['adi', 'rishi', 'smith', 'ritik', 'amaa'];
+
+//     // map looking & for loop support outside return but ==> (for,while,do-while loop ) will not support inside return
+//     // students.map((item)=>{
+//     //     console.warn("My name in map is: ",item);
+//     // });
+
+//     // for(let i=0; i < students.length; i++) {
+//     //     console.warn("My name in for loop is: ",students[i]);
+//     // }
+
+//     const candidates = [
+//         {
+//             name: 'adi', email: 'adi@check.com', address: [
+//                 { Hn: "10", city: 'Noida', country: 'India' },
+//                 { Hn: "20", city: 'delhi', country: 'India' },
+//                 { Hn: "30", city: 'mumbai', country: 'India' },
+//                 { Hn: "40", city: 'Noida', country: 'India' }
+//             ]
+//         },
+//         {
+//             name: 'rishi', email: 'rishi@check.com', address: [
+//                 { Hn: "10", city: 'Noida', country: 'India' },
+//                 { Hn: "20", city: 'delhi', country: 'India' },
+//                 { Hn: "30", city: 'mumbai', country: 'India' },
+//                 { Hn: "40", city: 'Noida', country: 'India' }
+//             ]
+//         },
+//         {
+//             name: 'smith', email: 'smith@check.com', address: [
+//                 { Hn: "10", city: 'Noida', country: 'India' },
+//                 { Hn: "20", city: 'delhi', country: 'India' },
+//                 { Hn: "30", city: 'mumbai', country: 'India' },
+//                 { Hn: "40", city: 'Noida', country: 'India' }
+//             ]
+//         },
+//         {
+//             name: 'amaa', email: 'amaa@check.com', address: [
+//                 { Hn: "10", city: 'Noida', country: 'India' },
+//                 { Hn: "20", city: 'delhi', country: 'India' },
+//                 { Hn: "30", city: 'mumbai', country: 'India' },
+//                 { Hn: "40", city: 'Noida', country: 'India' }
+//             ]
+//         }
+//     ];
+
+//     return (
+//         <div className='App'>
+//             <h1>List with Nested Array</h1>
+//             <Table variant='dark' striped>
+//                 <thead>
+//                     <tr>
+//                         <td>S.No.</td>
+//                         <td>Name</td>
+//                         <td>Email</td>
+//                         <td>Address</td>
+//                     </tr>
+//                 </thead>
+//                 <tbody>
+//                     {
+//                         // key is used to just remove an error & i to take as key & index also
+//                         candidates.map((item,i) =>
+//                             <tr key={i}>
+//                                 <td>{i+1}</td>
+//                                 <td>{item.name}</td>
+//                                 <td>{item.email}</td>
+//                                 <td>
+//                                     <Table variant='dark' striped>
+//                                         <tbody>{
+//                                             item.address.map((data,x) =>
+//                                                 <tr key={x}>
+//                                                     <td>{data.Hn}</td>
+//                                                     <td>{data.city}</td>
+//                                                     <td>{data.country}</td>
+//                                                 </tr>
+//                                             )
+//                                         }
+//                                         </tbody>
+//                                     </Table>
+//                                 </td>
+//                             </tr>
+//                         )
+//                     }
+//                 </tbody>
+//             </Table>
+//         </div>
+//     )
+// }
+
+
+//*** Reuse Component in loop ***
 function App() {
-    // const students = ['adi', 'rishi', 'smith', 'ritik', 'amaa'];
-
-    // map looking & for loop support outside return but ==> (for,while,do-while loop ) will not support inside return
-    // students.map((item)=>{
-    //     console.warn("My name in map is: ",item);
-    // });
-
-    // for(let i=0; i < students.length; i++) {
-    //     console.warn("My name in for loop is: ",students[i]);
-    // }
-
-    const candidates = [
+    const users = [
         {
-            name: 'adi', email: 'adi@check.com', address: [
-                { Hn: "10", city: 'Noida', country: 'India' },
-                { Hn: "20", city: 'delhi', country: 'India' },
-                { Hn: "30", city: 'mumbai', country: 'India' },
-                { Hn: "40", city: 'Noida', country: 'India' }
-            ]
+            name: 'adi', email: 'adi@check.com', contact: '111'
         },
         {
-            name: 'rishi', email: 'rishi@check.com', address: [
-                { Hn: "10", city: 'Noida', country: 'India' },
-                { Hn: "20", city: 'delhi', country: 'India' },
-                { Hn: "30", city: 'mumbai', country: 'India' },
-                { Hn: "40", city: 'Noida', country: 'India' }
-            ]
+            name: 'rishi', email: 'rishi@check.com', contact: '222'
         },
         {
-            name: 'smith', email: 'smith@check.com', address: [
-                { Hn: "10", city: 'Noida', country: 'India' },
-                { Hn: "20", city: 'delhi', country: 'India' },
-                { Hn: "30", city: 'mumbai', country: 'India' },
-                { Hn: "40", city: 'Noida', country: 'India' }
-            ]
+            name: 'smith', email: 'smith@check.com', contact: '333'
         },
         {
-            name: 'amaa', email: 'amaa@check.com', address: [
-                { Hn: "10", city: 'Noida', country: 'India' },
-                { Hn: "20", city: 'delhi', country: 'India' },
-                { Hn: "30", city: 'mumbai', country: 'India' },
-                { Hn: "40", city: 'Noida', country: 'India' }
-            ]
+            name: 'sam', email: 'sam@check.com', contact: '444'
         }
     ];
 
-    return (
+    return(
         <div className='App'>
-            <h1>List with Nested Array</h1>
-            <Table variant='dark' striped>
-                <thead>
-                    <tr>
-                        <td>S.No.</td>
-                        <td>Name</td>
-                        <td>Email</td>
-                        <td>Address</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        // key is used to just remove an error & i to take as key & index also
-                        candidates.map((item,i) =>
-                            <tr key={i}>
-                                <td>{i+1}</td>
-                                <td>{item.name}</td>
-                                <td>{item.email}</td>
-                                <td>
-                                    <Table variant='dark' striped>
-                                        <tbody>{
-                                            item.address.map((data,x) =>
-                                                <tr key={x}>
-                                                    <td>{data.Hn}</td>
-                                                    <td>{data.city}</td>
-                                                    <td>{data.country}</td>
-                                                </tr>
-                                            )
-                                        }
-                                        </tbody>
-                                    </Table>
-                                </td>
-                            </tr>
-                        )
-                    }
-                </tbody>
-            </Table>
+            <h1>Reuse component with list</h1>
+            
+            {
+                users.map((item, i)=>
+                <h1>
+                    <ReuseComp data={item}/>
+                </h1>
+                )
+            }
         </div>
     )
 }
-
-
 
 export default App;
