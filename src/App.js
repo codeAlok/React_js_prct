@@ -17,7 +17,9 @@ import { Table } from 'react-bootstrap'; //Bootstrap table
 import ReuseComp from './ReuseComp'; // to reuse component through loops
 import LiftingState from './LiftingState'; //to apply lifting state up 
 // import React, {PureComponent} from 'react'; // pureComponent(to avoid without any update re-rendering)
-import React, {useState, useMemo} from 'react'; // to use pureComponent in fn component (useMemo)
+// import React, {useState, useMemo} from 'react'; // to use pureComponent in fn component (useMemo)
+
+import React, {createRef} from 'react'; // use Ref in class comp (to manipulate Dom forcely)
 
 // function App() {
 
@@ -557,31 +559,71 @@ import React, {useState, useMemo} from 'react'; // to use pureComponent in fn co
 // }
 
 
-// *** Pure component in fn component ***
-function App() {
-    const [count, setCount] = useState(0);
-    const [item, setItem] = useState(10);
+// // *** Pure component in fn component ***
+// function App() {
+//     const [count, setCount] = useState(0);
+//     const [item, setItem] = useState(10);
 
-    // condition at last (only run this fn when count is update), avoid unnecessary calls when other thing update
-    const multiCountMemo = useMemo(function multiCount() {
-        console.warn("multiCount");
+//     // condition at last (only run this fn when count is update), avoid unnecessary calls when other thing update
+//     const multiCountMemo = useMemo(function multiCount() {
+//         console.warn("multiCount");
 
-        return count * 5;
-    },[count]);
+//         return count * 5;
+//     },[count]);
 
-    return (
-        <div className='App'>
-            <h1>useMemo Hook in react</h1>
-            <h2>Count: {count}</h2>
-            <h2>Item: {item}</h2>
+//     return (
+//         <div className='App'>
+//             <h1>useMemo Hook in react</h1>
+//             <h2>Count: {count}</h2>
+//             <h2>Item: {item}</h2>
 
-            {/* calling multiCountMemo fn */}
-            <h2>{multiCountMemo}</h2>  
+//             {/* calling multiCountMemo fn */}
+//             <h2>{multiCountMemo}</h2>  
 
-            <button onClick={()=> setCount(count + 1)}>update count</button>
-            <button onClick={()=> setItem(item * 10)}>update item</button>
-        </div>
-    );
+//             <button onClick={()=> setCount(count + 1)}>update count</button>
+//             <button onClick={()=> setItem(item * 10)}>update item</button>
+//         </div>
+//     );
+// }
+
+
+// *** Ref in class comp (can manipulate real Dom) ***
+// react don't recommend to use Ref (direct change to DOM)
+// use less Ref in react
+
+class App extends React.Component {
+    constructor() {
+        super();
+        this.inputRef = createRef(); // whereever this will be use , there it can manipulate those elements data
+    }
+
+    componentDidMount() {
+        // console.warn(this.inputRef.current.value="1000");
+    }
+
+    // any name just as function
+    getVal() {
+        // get value from DOM and manipulate
+        console.warn(this.inputRef.current.value);
+        this.inputRef.current.style.color= "red";  
+        this.inputRef.current.style.backgroundColor= 'black';
+        
+    }
+
+    render() {
+        return(
+            <div className='App'>
+                <h1> Ref in React</h1>
+
+                {/* Ref used here (can manipulate DOM) */}
+                <input type='text' ref={this.inputRef} />
+
+                <button onClick={()=> this.getVal()}>check Ref</button>
+            </div>
+        )
+    }
+
+
 }
 
 export default App;
