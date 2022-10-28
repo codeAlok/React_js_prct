@@ -1,5 +1,5 @@
 // import logo from './logo.svg';
-import React, { useState, useEffect } from 'react';  //Hooks in react
+// import React, { useState, useEffect } from 'react';  //Hooks in react
 import './App.css';
 import User from './User';
 import ClassComp from './ClassComp'; //for state & prop in class_comp
@@ -16,6 +16,7 @@ import { Table } from 'react-bootstrap'; //Bootstrap table
 
 import ReuseComp from './ReuseComp'; // to reuse component through loops
 import LiftingState from './LiftingState'; //to apply lifting state up 
+import React, {PureComponent} from 'react'; // pureComponent(to avoid without any update re-rendering)
 
 // function App() {
 
@@ -507,23 +508,51 @@ import LiftingState from './LiftingState'; //to apply lifting state up
 // }
 
 
-// *** Lifting state up ***
-// send child data to parent component( lifting state up)
-function App() {
-    let data = "Alok kumar";
+// // *** Lifting state up ***
+// // send child data to parent component( lifting state up)
+// function App() {
+//     let data = "Alok kumar";
     
-    function parentAlert(item) {
-        //data(item) receiving from child component
-        alert(item);
+//     function parentAlert(item) {
+//         //data(item) receiving from child component
+//         alert(item);
+//     }
+
+//     return(
+//         <div className='App'>
+//             <h1>Lifting state up</h1>
+//             {/* <LiftingState name={data}/> */}
+//             <LiftingState alert={parentAlert}/>
+//         </div>
+//     )
+// }
+
+
+// *** PureComponent ***
+// To avoid re-rendering , if no data is updated
+// using Purecomponent in class component like this , but in fn component we have to use another hooks for purecomponent property
+
+class App extends PureComponent {
+    constructor() {
+        super();
+        this.state={
+            count: 1
+        }
     }
 
-    return(
-        <div className='App'>
-            <h1>Lifting state up</h1>
-            {/* <LiftingState name={data}/> */}
-            <LiftingState alert={parentAlert}/>
-        </div>
-    )
+    render() {
+        console.warn("check re-rendering");
+        // if the value of count will be fixed/not change then the component will not re-render
+
+        return(
+            <div className='App'>
+                <h1>Pure component in react {this.state.count}</h1>
+                <button onClick={()=> this.setState({count: this.state.count+1})}>
+                    Update count
+                </button>
+            </div>
+        )
+    }
 }
 
 export default App;
