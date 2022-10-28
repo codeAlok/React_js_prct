@@ -16,7 +16,8 @@ import { Table } from 'react-bootstrap'; //Bootstrap table
 
 import ReuseComp from './ReuseComp'; // to reuse component through loops
 import LiftingState from './LiftingState'; //to apply lifting state up 
-import React, {PureComponent} from 'react'; // pureComponent(to avoid without any update re-rendering)
+// import React, {PureComponent} from 'react'; // pureComponent(to avoid without any update re-rendering)
+import React, {useState, useMemo} from 'react'; // to use pureComponent in fn component (useMemo)
 
 // function App() {
 
@@ -528,31 +529,59 @@ import React, {PureComponent} from 'react'; // pureComponent(to avoid without an
 // }
 
 
-// *** PureComponent ***
-// To avoid re-rendering , if no data is updated
-// using Purecomponent in class component like this , but in fn component we have to use another hooks for purecomponent property
+// // *** PureComponent ***
+// // To avoid re-rendering , if no data is updated
+// // using Purecomponent in class component like this , but in fn component we have to use another hooks for purecomponent property
 
-class App extends PureComponent {
-    constructor() {
-        super();
-        this.state={
-            count: 1
-        }
-    }
+// class App extends PureComponent {
+//     constructor() {
+//         super();
+//         this.state={
+//             count: 1
+//         }
+//     }
 
-    render() {
-        console.warn("check re-rendering");
-        // if the value of count will be fixed/not change then the component will not re-render
+//     render() {
+//         console.warn("check re-rendering");
+//         // if the value of count will be fixed/not change then the component will not re-render
 
-        return(
-            <div className='App'>
-                <h1>Pure component in react {this.state.count}</h1>
-                <button onClick={()=> this.setState({count: this.state.count+1})}>
-                    Update count
-                </button>
-            </div>
-        )
-    }
+//         return(
+//             <div className='App'>
+//                 <h1>Pure component in react {this.state.count}</h1>
+//                 <button onClick={()=> this.setState({count: this.state.count+1})}>
+//                     Update count
+//                 </button>
+//             </div>
+//         )
+//     }
+// }
+
+
+// *** Pure component in fn component ***
+function App() {
+    const [count, setCount] = useState(0);
+    const [item, setItem] = useState(10);
+
+    // condition at last (only run this fn when count is update), avoid unnecessary calls when other thing update
+    const multiCountMemo = useMemo(function multiCount() {
+        console.warn("multiCount");
+
+        return count * 5;
+    },[count]);
+
+    return (
+        <div className='App'>
+            <h1>useMemo Hook in react</h1>
+            <h2>Count: {count}</h2>
+            <h2>Item: {item}</h2>
+
+            {/* calling multiCountMemo fn */}
+            <h2>{multiCountMemo}</h2>  
+
+            <button onClick={()=> setCount(count + 1)}>update count</button>
+            <button onClick={()=> setItem(item * 10)}>update item</button>
+        </div>
+    );
 }
 
 export default App;
